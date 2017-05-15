@@ -7,9 +7,9 @@ class Window
 {
 
 private:
-
+	 
 	friend class Graphics;
-
+	 
 	HWND hwnd;
 	WNDCLASSEX wndclass;
 	MSG msg;

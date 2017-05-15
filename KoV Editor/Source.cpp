@@ -40,7 +40,7 @@ int main() {
 	mainWindow.create_window("KoV Editor", 0, 0, 1920, 1080);
 
 	Graphics graphics;
-
+	 
 	Map map(100,100);
 
 	srand(time(NULL));
@@ -48,7 +48,7 @@ int main() {
 
 	for (int i = 0; i < 100*100; ++i)
 	{
-
+ 
 	   Animation anim;
 	   anim.setSprite(&sprites[0]);
 	   anim.setDuration(600);

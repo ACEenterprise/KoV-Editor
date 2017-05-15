@@ -54,8 +54,8 @@ int Sprite::getWidth()
 {
 	return width_of_frame;
 }
-
+  
 int Sprite::getHeight()
-{
+{ 
 	return height_of_frame;
 }

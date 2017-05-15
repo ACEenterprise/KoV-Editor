@@ -1,16 +1,15 @@
 #include "Tile.h"
-
+#include"Animation.h"
 Tile::Tile() {
 	x = 0;
 	y = 0;
 	width = 0;
 	height = 0;
 	solid = true;
-	sprite = NULL;
 }
 
 Tile::~Tile() {
-	delete sprite;
+	
 }
 
 void Tile::setCoord(int x, int y) {
@@ -26,18 +25,18 @@ void Tile::setHeight(int height) {
 	this->height = height;
 }
 
-void Tile::setSprite(Sprite *sprite) {
-	this->sprite = sprite;
+void Tile::setAnimation(Animation animation) {
+	this->animation = animation;
 }
 
 int Tile::getWidth() {
 	return width;
 }
-
+ 
 int Tile::getHeight() {
 	return height;
 }
-
-Sprite* Tile::getSprite() {
-	return sprite;
+ 
+Animation &Tile::getAnimation() {
+	return animation;
 }

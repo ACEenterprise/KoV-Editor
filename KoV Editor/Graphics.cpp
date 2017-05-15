@@ -145,8 +145,8 @@ void Graphics::draw(Bitmap *bitmap, int x, int y, int width, int height, int cho
 		DeleteDC(mem);
 		ReleaseDC(hwnd, hdc);
 	}
-
-
+	 
+	  
 
 }
 
