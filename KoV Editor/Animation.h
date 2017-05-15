@@ -18,7 +18,7 @@ private:
 public:
 
 	Animation();
-
+	 
 	void setSprite(Sprite *sprite);
 
 	void setDuration(int duration);
