@@ -202,7 +202,7 @@ void Graphics::draw(Sprite *sprite, int frame, int x, int y, int width, int heig
 
 }
 
-void Graphics::draw(int left, int top, int right, int bottom,int color)
+void Graphics::draw(int left, int top, int right, int bottom, int color)
 {
 	HBRUSH oldBrush=(HBRUSH)SelectObject(mHdc, (HBRUSH)GetStockObject(DC_BRUSH));
 	SetDCBrushColor(mHdc,color);
