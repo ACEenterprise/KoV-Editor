@@ -202,9 +202,12 @@ void Graphics::draw(Sprite *sprite, int frame, int x, int y, int width, int heig
 
 }
 
-void Graphics::draw(int left, int top, int right, int bottom)
+void Graphics::draw(int left, int top, int right, int bottom,int color)
 {
+	HBRUSH oldBrush=(HBRUSH)SelectObject(mHdc, (HBRUSH)GetStockObject(DC_BRUSH));
+	SetDCBrushColor(mHdc,color);
 	Rectangle(mHdc, left, top, right, bottom);
+	SelectObject(mHdc, oldBrush);
 }
 
 void Graphics::translate(int x, int y)
