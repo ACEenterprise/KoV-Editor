@@ -10,15 +10,20 @@ class Map {
 	Tile *MapTiles;
 	int *walkable;
 	int width, height;
+	int width_tile, height_tile;
+	int x, y;
 
 public:
 
-	Map(int width, int height) {
+	Map(int width, int height,int width_tile,int height_tile) {
 		this->width = width;
 		this->height = height;
+		this->width_tile = width_tile;
+		this->height_tile = height_tile;
+
 		MapTiles = new Tile[width * height];
 		walkable = new int[width * height];
-
+		x = y = 0;
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
 				walkable[i * width + j] = 0;
@@ -32,17 +37,62 @@ public:
 		for(int i=0;i<height;++i)
 			for (int j = 0; j < width; ++j)
 			{
-				if (j * 128 >= 0 && j * 128 <= 1920 && i * 128 >= 0 && i * 128 <= 1080)
+				if (j * width_tile +x>=0 && j * width_tile+x <=1920 && i * height_tile +y>=0 && i * height_tile +y<=1080)
 				{
-					g.draw(MapTiles[i*width + j].getAnimation().getSprite(), MapTiles[i*width + j].getAnimation().getFrame(), j * 128, i * 128, 128, 128);
-					MapTiles[i*width + j].getAnimation().runAnimation();
+					if (MapTiles[i*width + j].getAnimation().getSprite())
+					{
+						g.draw(MapTiles[i*width + j].getAnimation().getSprite(), MapTiles[i*width + j].getAnimation().getFrame(), j * width_tile+x, i * height_tile+y, width_tile, height_tile);
+						MapTiles[i*width + j].getAnimation().runAnimation();
+					}
+					else
+						g.draw(j * width_tile+x, i * height_tile+y, j * width_tile+x + width_tile, i * height_tile+y + height_tile, RGB(255, 255, 255));
 				}
 			}
 	}
 
-	void setSprite(Animation anim, int i)
+	void setAnimation(Animation anim, int x,int y)
 	{
-		MapTiles[i].setAnimation(anim);
+		MapTiles[y*width + x].setAnimation(anim);
+	}
+
+	void setX(int x)
+	{
+		this->x = x;
+	}
+
+	void setY(int y)
+	{
+		this->y = y;
+	}
+	
+	int getX()
+	{
+		return x;
+	}
+
+	int getY()
+	{
+		return y;
+	}
+
+	int getWidth()
+	{
+		return width;
+	}
+	
+	int getHeight()
+	{
+		return height;
+	}
+
+	int getWidthTile()
+	{
+		return width_tile;
+	}
+
+	int getHeightTile()
+	{
+		return height_tile;
 	}
 
 

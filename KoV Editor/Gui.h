@@ -115,17 +115,18 @@ public:
 		static const int right_pressed = 67;
 		static const int left_released = 68;
 		static const int right_released = 69;
+		static const int moved = 70;
 	};
 
 	struct Window_event
 	{
-		static const int close = 70;
+		static const int close = 71;
 	};
 
 	struct Key_event
 	{
-		static const int key_pressed = 71;
-		static const int key_released = 72;
+		static const int key_pressed = 72;
+		static const int key_released = 73;
 	};
 
 	bool create_window(const char *title, int x, int y, int width, int height);

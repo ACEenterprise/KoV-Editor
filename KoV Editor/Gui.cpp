@@ -95,6 +95,12 @@ std::pair<int, int> Window::pollEvent()
 
 			return std::make_pair(Mouse_event::left_released, p.x | ((p.y) << 16));
 			break;
+		case WM_MOUSEMOVE:
+			GetCursorPos(&p);
+			ScreenToClient(hwnd, &p);
+
+			return std::make_pair(Mouse_event::moved, p.x | ((p.y) << 16));
+			break;
 
 		  //RIGHT CLICK AND ARROWS TO DO
 		}
