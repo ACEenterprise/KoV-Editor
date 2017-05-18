@@ -156,6 +156,6 @@ int main() {
 		graphics.invalidate();
 	}
 
-
+	//this is a test comment.
 	return 0;
 }
