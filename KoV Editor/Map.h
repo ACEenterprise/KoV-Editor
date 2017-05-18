@@ -41,17 +41,19 @@ public:
 				{
 					if (MapTiles[i*width + j].getAnimation().getSprite())
 					{
-						g.draw(MapTiles[i*width + j].getAnimation().getSprite(), MapTiles[i*width + j].getAnimation().getFrame(), j * width_tile+x, i * height_tile+y, width_tile, height_tile);
+						g.draw(MapTiles[i*width + j].getAnimation().getSprite(), MapTiles[i*width + j].getAnimation().getFrame(), j * width_tile+x, i * height_tile+y, width_tile*MapTiles[i*width + j].getSizeW(), height_tile*MapTiles[i*width + j].getSizeH());
 						MapTiles[i*width + j].getAnimation().runAnimation();
 					}
-					else
-						g.draw(j * width_tile+x, i * height_tile+y, j * width_tile+x + width_tile, i * height_tile+y + height_tile, RGB(255, 255, 255));
+				
+					g.draw(j * width_tile+x, i * height_tile+y, j * width_tile+x + width_tile, i * height_tile+y + height_tile, RGB(255, 255, 255),true);
 				}
 			}
 	}
 
-	void setAnimation(Animation anim, int x,int y)
+	void setAnimation(Animation anim, int x,int y,int size_w,int size_h)
 	{
+		MapTiles[y*width + x].setSizeW(size_w);
+		MapTiles[y*width + x].setSizeH(size_h);
 		MapTiles[y*width + x].setAnimation(anim);
 	}
 

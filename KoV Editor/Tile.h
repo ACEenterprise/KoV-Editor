@@ -17,7 +17,7 @@ class Tile {
 				 or structures that doesn't respect the width and height.
 	*/
 private:
-
+	int size_w, size_h;
 	bool solid;
 	Animation animation;
 
@@ -28,6 +28,11 @@ public:
 	~Tile();
 	void setAnimation(Animation animation);
 	Animation &getAnimation();
+
+	void setSizeW(int size_w);
+	void setSizeH(int size_h);
+	int getSizeW();
+	int getSizeH();
 
 };
 
