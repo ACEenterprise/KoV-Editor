@@ -29,13 +29,13 @@ public:
 	void create(Window &window, int width, int height);
 
 	void invalidate();
-
+	 
 	void draw(Bitmap *bitmap, int x, int y, int width, int height);
 
 	void draw(Bitmap *bitmap, int x, int y, int width, int height, int chop_x, int chop_y, int chop_width, int chop_height);
 
 	void draw(Bitmap *bitmap, int x, int y, int width, int height, int chop_x, int chop_y, int chop_width, int chop_height, Bitmap *mask, int reverse, double rotation);
-
+	 
 	void draw(Sprite *sprite, int x, int y, int width, int height);
 
 	void draw(Sprite *sprite, int frame, int x, int y, int width, int height);

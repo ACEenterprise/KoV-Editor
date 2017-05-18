@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Sprite.h"
+#include"Animation.h"
 
 /*
 	Tile Class.
@@ -22,22 +23,23 @@ private:
 
 	int x, y, width, height;
 	bool solid;
-	Sprite *sprite;
+	Animation animation;
 
 public:
 
 	//Contructor and deconstructor
 	Tile();
 	~Tile();
-
+	 
+	     
 	void setCoord(int x, int y);
 	void setWidth(int width);
 	void setHeight(int height);
-	void setSprite(Sprite *sprite);
-
+	void setAnimation(Animation animation);
+	   
 	int getWidth();
 	int getHeight();
-	Sprite* getSprite();
+	Animation &getAnimation();
 
 };
 

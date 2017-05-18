@@ -1,7 +1,7 @@
 #include"Gui.h"
 bool Window::create_window(const char *title, int x, int y, int width, int height)
 {
-
+  
 	wndclass.cbSize = sizeof(wndclass);
 	wndclass.cbClsExtra = NULL;
 	wndclass.cbWndExtra = NULL;
@@ -14,7 +14,7 @@ bool Window::create_window(const char *title, int x, int y, int width, int heigh
 	wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	wndclass.lpszClassName = "window";
 	wndclass.lpfnWndProc = WndProc;
-
+	    
 	if (!RegisterClassEx(&wndclass))
 		return false;
 

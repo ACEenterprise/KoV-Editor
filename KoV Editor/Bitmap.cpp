@@ -5,10 +5,10 @@ Bitmap::Bitmap()
 	width = height = 0;
 	pixels = NULL;
 	color_table = NULL;
-	bmi = NULL;
+	bmi = NULL; 
 	bm = NULL;
-}
-
+} 
+ 
 void Bitmap::create(HWND hwnd)
 {
 	if (bm == NULL)

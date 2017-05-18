@@ -1,0 +1,10 @@
+9
+sprite/apa9x9.bmp 3 3
+sprite/castel1.bmp 1 1
+sprite/castel2.bmp 1 1
+sprite/minaaur.bmp 1 1
+sprite/minacristal.bmp 1 1
+sprite/minapiatra.bmp 1 1
+sprite/nisip.bmp 1 1
+sprite/piatra.bmp 1 1
+sprite/weed.bmp 1 1
