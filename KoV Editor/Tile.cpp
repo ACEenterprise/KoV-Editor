@@ -1,7 +1,7 @@
 #include "Tile.h"
 #include"Animation.h"
 Tile::Tile() {
-	solid = true;
+	state = 0;
 	size_w = 1;
 	size_h = 1;
 }
@@ -34,4 +34,13 @@ int Tile::getSizeW()
 int Tile::getSizeH()
 {
 	return size_h;
+}
+
+void Tile::setState(int state)
+{
+	this->state = state;
+}
+int Tile::get_State()
+{
+	return state;
 }

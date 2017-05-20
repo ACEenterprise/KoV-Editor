@@ -147,7 +147,7 @@ int main() {
 			dwLastUpdateTime = dwCurrentTime;
 		}
 
-		graphics.draw(0, 0, 1920, 1080, RGB(0, 0, 0),false);
+		graphics.draw(0, 0, 1920, 1080, RGB(0, 0, 0), RGB(0, 0, 0),false);
 
 		map.drawMap(graphics);
 		if(mouse_x >=map.getX() && mouse_x + map.getWidthTile()*sz_w<=map.getX()+map.getWidth()*map.getWidthTile()

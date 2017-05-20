@@ -18,7 +18,7 @@ class Tile {
 	*/
 private:
 	int size_w, size_h;
-	bool solid;
+	int state;
 	Animation animation;
 
 public:
@@ -33,6 +33,9 @@ public:
 	void setSizeH(int size_h);
 	int getSizeW();
 	int getSizeH();
+
+	void setState(int state);
+	int get_State();
 
 };
 
