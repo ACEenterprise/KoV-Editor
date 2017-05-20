@@ -62,6 +62,8 @@ int main() {
 
 	int mouse_x = 0, mouse_y = 0;
 	int sz_w=1, sz_h=1;
+
+	int action = 0;
 	while ((ev=mainWindow.pollEvent()).first != Window::Window_event::close)
 	{
 
@@ -75,22 +77,35 @@ int main() {
 			{
 				ind = (sprites.size() + ind + 1) % sprites.size();
 			}
+			if (ev.second == Window::Keys::_O)
+			{
+				action = (3 + action - 1) % 3;
+			}
+			else if (ev.second == Window::Keys::_P)
+			{
+				action = (action + 1) % 3;
+			}
 			else if (ev.second == Window::Keys::_I)
 			{
+			
 				map.setY(map.getY() + map.getHeightTile());
 			}
 			else if ((ev.second == Window::Keys::_J))
 			{
+			
 				map.setX(map.getX() + map.getWidthTile());
 			}
 			else if ((ev.second == Window::Keys::_K))
 			{
+				
 				map.setY(map.getY() - map.getHeightTile());
 			}
 			else if ((ev.second == Window::Keys::_L))
 			{
+			
 				map.setX(map.getX() - map.getWidthTile());
 			}
+
 			else if ((ev.second == Window::Keys::_1))
 			{
 				sz_w++;
@@ -124,7 +139,7 @@ int main() {
 
 		if (ev.first == Window::Mouse_event::left_pressed)
 		{
-			if (mouse_x >= map.getX() && mouse_x + map.getWidthTile()*sz_w <= map.getX() + map.getWidth()*map.getWidthTile()
+			if (action == 0 &&mouse_x >= map.getX() && mouse_x + map.getWidthTile()*sz_w <= map.getX() + map.getWidth()*map.getWidthTile()
 				&& mouse_y >= map.getY() && mouse_y + map.getHeightTile()*sz_h <= map.getY() + map.getHeight()*map.getHeightTile())
 			{
 				Animation anim;
@@ -133,6 +148,17 @@ int main() {
 				anim.setRepeat(true);
 
 				map.setAnimation(anim, (mouse_x - map.getX()) / map.getWidthTile(), (mouse_y - map.getY()) / map.getHeightTile(),sz_w,sz_h);
+			}
+			else if (action == 1 && mouse_x >= map.getX() && mouse_x + map.getWidthTile() <= map.getX() + map.getWidth()*map.getWidthTile()
+				&& mouse_y >= map.getY() && mouse_y + map.getHeightTile() <= map.getY() + map.getHeight()*map.getHeightTile())
+			{
+				map.setTileState((mouse_x - map.getX()) / map.getWidthTile(), (mouse_y - map.getY()) / map.getHeightTile(), 0);
+			}
+
+			else if (action == 2 && mouse_x >= map.getX() && mouse_x + map.getWidthTile() <= map.getX() + map.getWidth()*map.getWidthTile()
+				&& mouse_y >= map.getY() && mouse_y + map.getHeightTile() <= map.getY() + map.getHeight()*map.getHeightTile())
+			{
+				map.setTileState((mouse_x - map.getX()) / map.getWidthTile(), (mouse_y - map.getY()) / map.getHeightTile(), 1);
 			}
 		}
 
@@ -150,9 +176,22 @@ int main() {
 		graphics.draw(0, 0, 1920, 1080, RGB(0, 0, 0), RGB(0, 0, 0),false);
 
 		map.drawMap(graphics);
-		if(mouse_x >=map.getX() && mouse_x + map.getWidthTile()*sz_w<=map.getX()+map.getWidth()*map.getWidthTile()
+
+		if(action ==0 && mouse_x >=map.getX() && mouse_x + map.getWidthTile()*sz_w<=map.getX()+map.getWidth()*map.getWidthTile()
 			&& mouse_y >= map.getY() && mouse_y + map.getHeightTile()*sz_h <= map.getY() + map.getHeight()*map.getHeightTile())
 			graphics.draw(&sprites[ind], mouse_x, mouse_y, map.getWidthTile()*sz_w, map.getHeightTile()*sz_h);
+
+		else if (action == 1 && mouse_x >= map.getX() && mouse_x + map.getWidthTile() <= map.getX() + map.getWidth()*map.getWidthTile()
+			&& mouse_y >= map.getY() && mouse_y + map.getHeightTile() <= map.getY() + map.getHeight()*map.getHeightTile())
+		{
+			graphics.draw(mouse_x, mouse_y, mouse_x + map.getWidthTile(), mouse_y+ map.getHeightTile(), RGB(0, 0, 0), RGB(0, 255, 0), true);
+		}
+
+		else if (action == 2 && mouse_x >= map.getX() && mouse_x + map.getWidthTile() <= map.getX() + map.getWidth()*map.getWidthTile()
+			&& mouse_y >= map.getY() && mouse_y + map.getHeightTile() <= map.getY() + map.getHeight()*map.getHeightTile())
+		{
+			graphics.draw(mouse_x, mouse_y, mouse_x + map.getWidthTile(), mouse_y + map.getHeightTile(), RGB(0, 0, 0), RGB(255, 0, 0), true);
+		}
 		graphics.invalidate();
 	}
 

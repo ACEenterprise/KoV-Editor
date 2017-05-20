@@ -60,6 +60,11 @@ public:
 		MapTiles[y*width + x].setAnimation(anim);
 	}
 
+	void setTileState(int x, int y, int state)
+	{
+		MapTiles[y*width + x].setState(state);
+	}
+
 	void setX(int x)
 	{
 		this->x = x;
