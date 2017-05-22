@@ -11,7 +11,6 @@
 #include"Animation.h"
 class Map {
 	Tile *MapTiles;
-	int *walkable;
 	int width, height;
 	int width_tile, height_tile;
 	int x, y;
@@ -25,13 +24,7 @@ public:
 		this->height_tile = height_tile;
 
 		MapTiles = new Tile[width * height];
-		walkable = new int[width * height];
 		x = y = 0;
-		for (int i = 0; i < height; ++i) {
-			for (int j = 0; j < width; ++j) {
-				walkable[i * width + j] = 0;
-			}
-		}
 	}
   
 	void drawMap(Graphics &g)
@@ -140,16 +133,16 @@ public:
 
 		for (int i = 0; i < sp.size(); ++i)
 		{
-			out << MapTiles->getAnimation().getSprite()->getPath() << " " << MapTiles->getAnimation().getSprite()->getFramesPerWidth()
-				   << MapTiles->getAnimation().getSprite()->getFramesPerHeight()<<"\n";
+			out << sp[i]->getPath() << " " << sp[i]->getFramesPerWidth()<<" "
+				   << sp[i]->getFramesPerHeight()<<"\n";
 		}
 
 		for (int i = 0; i<height; ++i)
 			for (int j = 0; j < width; ++j)
 			{
-				if (MapTiles->getAnimation().getSprite())
+				if (MapTiles[i*width + j].getAnimation().getSprite())
 				{
-					out << mp[MapTiles->getAnimation().getSprite()->getPath()] << " ";
+					out << mp[MapTiles[i*width + j].getAnimation().getSprite()->getPath()] << " ";
 					out << MapTiles[i*width + j].getSizeW() << " " << MapTiles[i*width + j].getSizeH() << " " << MapTiles[i*width + j].get_State() << "\n";
 				}
 				else
@@ -159,6 +152,64 @@ public:
 			}
 
 		out.close();
+	}
+
+	void Import(string path, vector<Sprite> &sprites)
+	{
+		sprites.clear();
+
+		ifstream in(path);
+
+		in >> width >> height;
+		in >> width_tile >> height_tile;
+
+		delete[] MapTiles;
+
+		MapTiles = new Tile[width * height];
+
+		int n;
+
+		in >> n;
+
+		for (int i = 0; i < n; ++i)
+		{
+			Sprite sprite;
+
+			sprites.push_back(sprite);
+
+			string pt;
+			int w, h;
+
+			in >> pt >> w >> h;
+
+			sprites[i].Load(pt.c_str(), w, h);
+		}
+
+		for (int i = 0; i < height; ++i)
+		{
+			int id,w,h,s;
+		
+			for (int j = 0; j < width; ++j)
+			{
+
+				in >> id >> w >> h >> s;
+
+				if (id)
+				{
+					Animation anim;
+					anim.setSprite(&sprites[id - 1]);
+					anim.setDuration(500);
+					anim.setRepeat(true);
+
+					MapTiles[i*width + j].setAnimation(anim);
+				}
+
+				MapTiles[i*width + j].setSizeW(w);
+				MapTiles[i*width + j].setSizeH(h);
+				MapTiles[i*width + j].setState(s);
+			}
+		}
+
 	}
 
 };

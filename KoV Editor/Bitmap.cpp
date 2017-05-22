@@ -7,6 +7,7 @@ Bitmap::Bitmap()
 	color_table = NULL;
 	bmi = NULL; 
 	bm = NULL;
+	path = "";
 } 
  
 void Bitmap::create(HWND hwnd)
@@ -108,7 +109,7 @@ bool Bitmap::Load(const char *file_name)
 	pixels = new unsigned char[bmH.bfSize - bmH.bfOffBits];
 	in.read((char*)pixels, bmH.bfSize - bmH.bfOffBits);
 
-	this->path = path;
+	this->path+= file_name;
 
 	return true;
 }

@@ -124,6 +124,14 @@ int main() {
 				if(sz_h>1)
 					sz_h--;
 			}
+			else if ((ev.second == Window::Keys::_M))
+			{
+				map.Export("data.txt");
+			}
+			else if ((ev.second == Window::Keys::_N))
+			{
+				map.Import("data.txt",sprites);
+			}
 
 		}
 
