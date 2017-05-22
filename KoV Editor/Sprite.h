@@ -35,6 +35,12 @@ public:
 
 	int getHeight();
 
+	int getFramesPerWidth();
+
+	int getFramesPerHeight();
+
+	string getPath();
+
 };
 
 #endif

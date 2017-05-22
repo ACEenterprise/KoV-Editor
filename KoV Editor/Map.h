@@ -4,6 +4,9 @@
 #include "Tile.h"
 #include <algorithm>
 #include <fstream>
+#include<map>
+#include<string>
+#include<vector>
 #include"Graphics.h"
 #include"Animation.h"
 class Map {
@@ -105,6 +108,58 @@ public:
 		return height_tile;
 	}
 
+	void Export(string path)
+	{
+		ofstream out(path);
+
+		out << width << " " << height<<"\n";
+
+		out << width_tile << " " << height_tile << "\n";
+
+		map<string, int> mp;
+		int nr_sprites=0;
+
+		vector<Sprite*> sp;
+
+		for (int i = 0; i<height; ++i)
+			for (int j = 0; j < width; ++j)
+			{
+				if (MapTiles[i*width+j].getAnimation().getSprite())
+				{
+					if (mp[MapTiles[i*width + j].getAnimation().getSprite()->getPath()] == 0)
+					{
+						nr_sprites++;
+						mp[MapTiles[i*width + j].getAnimation().getSprite()->getPath()] = nr_sprites;
+
+						sp.push_back(MapTiles[i*width + j].getAnimation().getSprite());
+					}
+				}
+			}
+
+		out << sp.size() << "\n";
+
+		for (int i = 0; i < sp.size(); ++i)
+		{
+			out << MapTiles->getAnimation().getSprite()->getPath() << " " << MapTiles->getAnimation().getSprite()->getFramesPerWidth()
+				   << MapTiles->getAnimation().getSprite()->getFramesPerHeight()<<"\n";
+		}
+
+		for (int i = 0; i<height; ++i)
+			for (int j = 0; j < width; ++j)
+			{
+				if (MapTiles->getAnimation().getSprite())
+				{
+					out << mp[MapTiles->getAnimation().getSprite()->getPath()] << " ";
+					out << MapTiles[i*width + j].getSizeW() << " " << MapTiles[i*width + j].getSizeH() << " " << MapTiles[i*width + j].get_State() << "\n";
+				}
+				else
+				{
+					out << "0 0 0 " << MapTiles[i*width + j].get_State()<<"\n";
+				}
+			}
+
+		out.close();
+	}
 
 };
 

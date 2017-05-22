@@ -20,6 +20,8 @@ private:
 	int width;
 	int height;
 
+	string path;
+
 	void create(HWND hwnd);
 
 	void create_mask(HWND hwnd, bool reverse);
@@ -32,6 +34,8 @@ public:
 	int getWidth();
 
 	int getHeight();
+
+	string getPath();
 
 	~Bitmap();
 };

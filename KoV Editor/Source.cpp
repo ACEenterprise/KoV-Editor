@@ -41,7 +41,7 @@ int main() {
 
 	Graphics graphics;
 	 
-	Map map(50,50,32,32);
+	Map map(50,50,96,96);
 
 	srand(time(NULL));
 

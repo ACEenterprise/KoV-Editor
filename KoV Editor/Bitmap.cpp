@@ -108,6 +108,8 @@ bool Bitmap::Load(const char *file_name)
 	pixels = new unsigned char[bmH.bfSize - bmH.bfOffBits];
 	in.read((char*)pixels, bmH.bfSize - bmH.bfOffBits);
 
+	this->path = path;
+
 	return true;
 }
 
@@ -119,6 +121,11 @@ int Bitmap::getWidth()
 int Bitmap::getHeight()
 {
 	return height;
+}
+
+string Bitmap::getPath()
+{
+	return path;
 }
 
 Bitmap::~Bitmap()
