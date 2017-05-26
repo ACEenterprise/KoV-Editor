@@ -25,6 +25,10 @@ public:
 
 		MapTiles = new Tile[width * height];
 		x = y = 0;
+
+		for (int i = 0; i < height; ++i)
+			for (int j = 0; j < width; ++j)
+				MapTiles[i*width + j].setState(1);
 	}
   
 	void drawMap(Graphics &g)
@@ -33,7 +37,7 @@ public:
 		for(int i=0;i<height;++i)
 			for (int j = 0; j < width; ++j)
 			{
-				if (j * width_tile +x>=0 && j * width_tile+x <=1920 && i * height_tile +y>=0 && i * height_tile +y<=1080)
+				if (j * width_tile +x>=0 && j * width_tile+x <=1920 && i * height_tile +y>=0 && i * height_tile +y<=1080 || i==0 && j==0)
 				{
 					if (MapTiles[i*width + j].getAnimation().getSprite())
 					{
@@ -41,9 +45,9 @@ public:
 						MapTiles[i*width + j].getAnimation().runAnimation();
 					}
 
-					if(MapTiles[i*width + j].get_State()==0)
+					if(MapTiles[i*width + j].get_State()==1)
 						g.draw(j * width_tile + x, i * height_tile + y, j * width_tile + x + width_tile, i * height_tile + y + height_tile, RGB(255, 255, 255), RGB(0, 255, 0), true);
-					else if (MapTiles[i*width + j].get_State() == 1)
+					else if (MapTiles[i*width + j].get_State() == 0)
 						g.draw(j * width_tile + x, i * height_tile + y, j * width_tile + x + width_tile, i * height_tile + y + height_tile, RGB(255, 255, 255), RGB(255, 0, 0), true);
 				}
 			}

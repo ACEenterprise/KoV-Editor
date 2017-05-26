@@ -41,7 +41,7 @@ int main() {
 
 	Graphics graphics;
 	 
-	Map map(50,50,96,96);
+	Map map(70,70,64,64);
 
 	srand(time(NULL));
 
@@ -160,13 +160,13 @@ int main() {
 			else if (action == 1 && mouse_x >= map.getX() && mouse_x + map.getWidthTile() <= map.getX() + map.getWidth()*map.getWidthTile()
 				&& mouse_y >= map.getY() && mouse_y + map.getHeightTile() <= map.getY() + map.getHeight()*map.getHeightTile())
 			{
-				map.setTileState((mouse_x - map.getX()) / map.getWidthTile(), (mouse_y - map.getY()) / map.getHeightTile(), 0);
+				map.setTileState((mouse_x - map.getX()) / map.getWidthTile(), (mouse_y - map.getY()) / map.getHeightTile(), 1);
 			}
 
 			else if (action == 2 && mouse_x >= map.getX() && mouse_x + map.getWidthTile() <= map.getX() + map.getWidth()*map.getWidthTile()
 				&& mouse_y >= map.getY() && mouse_y + map.getHeightTile() <= map.getY() + map.getHeight()*map.getHeightTile())
 			{
-				map.setTileState((mouse_x - map.getX()) / map.getWidthTile(), (mouse_y - map.getY()) / map.getHeightTile(), 1);
+				map.setTileState((mouse_x - map.getX()) / map.getWidthTile(), (mouse_y - map.getY()) / map.getHeightTile(), 0);
 			}
 		}
 
